@@ -3,3 +3,4 @@ __pycache__/
 ve/
 .venv/
 *.egg-info/
+.idea
