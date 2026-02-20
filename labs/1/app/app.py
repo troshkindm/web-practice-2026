@@ -1,15 +1,24 @@
 import random
 import os
-
 from flask import Flask, render_template
 from faker import Faker
 
 fake = Faker()
 
-
-prefix = os.environ.get('URL_PREFIX', '')
-app = Flask(__name__, static_url_path=f'{prefix}/static')
+app = Flask(__name__)
 application = app
+
+# prefix middleware for reverse proxy
+prefix = os.environ.get('URL_PREFIX', '')
+if prefix:
+    class PrefixMiddleware:
+        def __init__(self, wsgi_app, prefix):
+            self.wsgi_app = wsgi_app
+            self.prefix = prefix
+        def __call__(self, environ, start_response):
+            environ['SCRIPT_NAME'] = self.prefix
+            return self.wsgi_app(environ, start_response)
+    app.wsgi_app = PrefixMiddleware(app.wsgi_app, prefix)
 
 images_ids = ['7d4e9175-95ea-4c5f-8be5-92a6b708bb3c',
               '2d2ab7df-cdbc-48a8-a936-35bba702def5',

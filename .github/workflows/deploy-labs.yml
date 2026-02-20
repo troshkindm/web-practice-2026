@@ -10,7 +10,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v4
 
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1
@@ -19,8 +19,7 @@ jobs:
           username: root
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /opt/labs
-            git pull origin main || git clone <repo-url> /opt/labs/repo
-            cp -r /opt/labs/repo/labs/1/app /opt/labs/lab1/app
-            docker compose build lab1
-            docker compose up -d lab1
+            cd /opt/labs/repo
+            git pull origin main
+            cd labs
+            docker compose up -d --build
