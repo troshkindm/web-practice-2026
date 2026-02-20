@@ -1,6 +1,6 @@
 services:
   lab1:
-    build: ./lab1
+    build: ./1
     restart: unless-stopped
     expose:
       - "5000"
