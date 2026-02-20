@@ -1,0 +1,14 @@
+services:
+  lab1:
+    build: ./lab1
+    restart: unless-stopped
+    expose:
+      - "5000"
+    environment:
+      - URL_PREFIX=/labs/1
+    networks:
+      - web
+
+networks:
+  web:
+    external: true
