@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="my-5">Лабораторная работа №2. Работа с данными запроса</h1>
+<p>Навигация по страницам доступна в меню выше.</p>
+<ul>
+  <li><a href="{{ url_for('url_params') }}">Параметры URL</a></li>
+  <li><a href="{{ url_for('headers') }}">Заголовки запроса</a></li>
+  <li><a href="{{ url_for('cookies') }}">Cookies</a></li>
+  <li><a href="{{ url_for('login') }}">Форма авторизации</a></li>
+  <li><a href="{{ url_for('phone') }}">Проверка номера телефона</a></li>
+</ul>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="my-5">Форма авторизации</h1>
+
+<form method="POST" class="mb-4" style="max-width: 400px;">
+  <div class="mb-3">
+    <label for="login" class="form-label">Логин</label>
+    <input type="text" class="form-control" id="login" name="login" required>
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Пароль</label>
+    <input type="password" class="form-control" id="password" name="password" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Войти</button>
+</form>
+
+{% if form_data %}
+<hr>
+<h3>Переданные данные формы</h3>
+<table class="table table-bordered" style="max-width: 400px;">
+  <tbody>
+    <tr><td>Логин</td><td>{{ form_data.login }}</td></tr>
+    <tr><td>Пароль</td><td>{{ form_data.password }}</td></tr>
+  </tbody>
+</table>
+{% endif %}
+{% endblock %}

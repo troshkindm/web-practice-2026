@@ -9,6 +9,16 @@ services:
     networks:
       - web
 
+  lab2:
+    build: ./2
+    restart: unless-stopped
+    expose:
+      - "5000"
+    environment:
+      - URL_PREFIX=/labs/2
+    networks:
+      - web
+
 networks:
   web:
     external: true
